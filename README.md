@@ -8,3 +8,5 @@ For more information, refer to the following:
 # Known Issues
 - Generation will fail if goal is set to `marisa_kirisame` or `true_ending` while `shuffle_fish_mission` is false and `aquariumsanity` is true
 - `all_completion_bonus` goal sometimes gens unbeatable seeds.
+- If you game over/return to the main menu, you will need to do a full game restart to be able to reconnect
+- If the room port ever changes, you will need to restart your save file to continue play (unless you know your way around a hex editor to edit the port in the save file yourself)
