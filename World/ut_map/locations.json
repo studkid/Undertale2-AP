@@ -1,0 +1,455 @@
+[
+	{
+		"name": "Ruins",
+		"children": [
+			{
+				"name": "Landing - In the Void",
+				"sections": [
+                    {
+                    	"name": "Landing - In the Void"
+                    }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Ruins",
+                        "x": 171,
+                        "y": 1279
+                    }
+                ]
+			},
+			{
+				"name": "Landing - Flowey",
+				"sections": [
+                    { "name": "#1 Flowey Card" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Ruins",
+                        "x": 397,
+                        "y": 1098
+                    }
+                ]
+			},
+			{
+				"name": "Ruins - Corridor PEZ",
+				"sections": [
+                    { "name": "Ruins - Corridor Homer PEZ Dispenser 1" },
+                    { "name": "Ruins - Corridor Homer PEZ Dispenser 2" },
+                    { "name": "Ruins - Corridor Homer PEZ Dispenser 3" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Ruins",
+                        "x": 598,
+                        "y": 383
+                    }
+                ]
+            },
+			{
+				"name": "Ruins - Corridor Chest",
+				"sections": [
+                    { "name": "Ruins - Corridor Chest" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Ruins",
+                        "x": 618,
+                        "y": 455
+                    }
+                ]
+            },
+			{
+				"name": "Froggit Card",
+				"sections": [
+                    { "name": "#2 Froggit Card" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Ruins",
+                        "x": 147,
+                        "y": 390
+                    }
+                ]
+            },
+			{
+				"name": "Bart Playing Rough Card",
+				"sections": [
+                    { "name": "#3 Bart Playing Rough Card" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Ruins",
+                        "x": 147,
+                        "y": 566
+                    }
+                ]
+            },
+			{
+				"name": "Peatrooper Card",
+				"sections": [
+                    { "name": "#5 Peatrooper Card" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Ruins",
+                        "x": 147,
+                        "y": 820
+                    }
+                ]
+            },
+			{
+				"name": "Ruins - Scopestablook",
+				"sections": [
+                    { "name": "#4 Scopestablook Card" },
+                    { "name": "Ruins - Scopestablook Drop" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Ruins",
+                        "x": 774,
+                        "y": 268
+                    }
+                ]
+            },
+			{
+				"name": "Ruins - Shop",
+				"sections": [
+                    { "name": "Nicky Coinflip Ruins - Paper hat Purchase" },
+                    { "name": "Nicky Coinflip Ruins - Lucky Crowbar Purchase" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Ruins",
+                        "x": 723,
+                        "y": 131
+                    }
+                ]
+            },
+			{
+				"name": "Ruins - Rest Chest",
+				"sections": [
+                    { "name": "Ruins - Corridor Chest" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Ruins",
+                        "x": 930,
+                        "y": 161
+                    }
+                ]
+            },
+			{
+				"name": "Ruins - Rest Zone PEZ",
+				"sections": [
+                    { "name": "Ruins - Rest Zone Homer PEZ Dispenser 1" },
+                    { "name": "Ruins - Rest Zone Homer PEZ Dispenser 2" },
+                    { "name": "Ruins - Rest Zone Homer PEZ Dispenser 3" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Ruins",
+                        "x": 692,
+                        "y": 140
+                    }
+                ]
+            },
+			{
+				"name": "Helper Mimic",
+				"sections": [
+                    { "name": "#6 Helper Mimic Card" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Ruins",
+                        "x": 900,
+                        "y": 503
+                    }
+                ]
+            },
+			{
+				"name": "Ruins - Lake Keys",
+				"sections": [
+                    { "name": "Ruins - Lake Gold Key" },
+                    { "name": "Ruins - Lake Silver Key" },
+                    { "name": "Ruins - Lake Bronze Key" },
+                    { "name": "Ruins - Monk Key" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Ruins",
+                        "x": 956,
+                        "y": 226
+                    }
+                ]
+            },
+			{
+				"name": "Ruins - Intermission",
+				"sections": [
+                    { "name": "Intermission - sans' package" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Ruins",
+                        "x": 1259,
+                        "y": 82
+                    }
+                ]
+            },
+			{
+				"name": "Swamp - Friefit",
+				"sections": [
+                    { "name": "Swamp - Friefit Drop" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Ruins",
+                        "x": 1277,
+                        "y": 337
+                    }
+                ]
+            },
+			{
+				"name": "Swamp - Upper Chest",
+				"sections": [
+                    { "name": "Swamp - Upper Chest" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Ruins",
+                        "x": 1367,
+                        "y": 375
+                    }
+                ]
+            },
+			{
+				"name": "Swamp - Lower Chest",
+				"sections": [
+                    { "name": "Swamp - Lower Chest" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Ruins",
+                        "x": 1405,
+                        "y": 427
+                    }
+                ]
+            },
+			{
+				"name": "Swamp - Slungy Scungle",
+				"sections": [
+                    { "name": "Swamp - Save Monk Key" },
+                    { "name": "Slungy Scungle - Frogueslick Drop" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Ruins",
+                        "x": 1479,
+                        "y": 360
+                    }
+                ]
+            },
+			{
+				"name": "Swamp - Spark Chamber",
+				"sections": [
+                    { "name": "#42 Spark Card" },
+                    { "name": "Swamp - Spark Drop" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Ruins",
+                        "x": 1045,
+                        "y": 465
+                    }
+                ]
+            },
+			{
+				"name": "Bog Cog",
+				"sections": [
+                    { "name": "#15 Bog Cog Card" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Ruins",
+                        "x": 1368,
+                        "y": 585
+                    }
+                ]
+            },
+			{
+				"name": "Ruins - P-Capsule Seller",
+				"sections": [
+                    { "name": "P-Capsule Ruins Seller - Soap-P Purchase" },
+                    { "name": "P-Capsule Ruins Seller - Midnight-P Purchase" },
+                    { "name": "P-Capsule Ruins Seller - Berry-P Purchase" },
+                    { "name": "P-Capsule Ruins Seller - Spriulina-P Purchase" },
+                    { "name": "P-Capsule Ruins Seller - Matcha-P Purchase" },
+                    { "name": "P-Capsule Ruins Seller - Toby-P Purchase" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Ruins",
+                        "x": 1451,
+                        "y": 175
+                    }
+                ]
+            },
+			{
+				"name": "Ruins - Table Mimic",
+				"sections": [
+                    { "name": "#7 Table Mimic Card" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Ruins",
+                        "x": 1105,
+                        "y": 158
+                    }
+                ]
+            },
+			{
+				"name": "Ruins - Knockdown Peatroopers",
+				"sections": [
+                    { "name": "Ruins - Knockdown Peatroopers" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Ruins",
+                        "x": 1105,
+                        "y": 218
+                    }
+                ]
+            }
+		]
+	},
+    {
+        "name": "Archives",
+        "children": [
+            {
+				"name": "Archives - Basement Bart",
+				"sections": [
+                    { "name": "Archives - Basement Bart" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Archives",
+                        "x": 580,
+                        "y": 1392
+                    }
+                ]
+            },
+            {
+				"name": "Archives - Broom Closet Lower Chest",
+				"sections": [
+                    { "name": "Archives - Broom Closet Lower Chest" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Archives",
+                        "x": 1077,
+                        "y": 1379
+                    }
+                ]
+            },
+            {
+				"name": "Archives - Broom Closet Upper Chest",
+				"sections": [
+                    { "name": "Archives - Broom Closet Upper Chest" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Archives",
+                        "x": 1001,
+                        "y": 1126
+                    }
+                ]
+            },
+            {
+				"name": "Archives - Broom Closet Upper Chest",
+				"sections": [
+                    { "name": "Archives Chimeny - Magic Glass Chest" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Archives",
+                        "x": 816,
+                        "y": 1697
+                    }
+                ]
+            },
+            {
+				"name": "Church - Chef Chest",
+				"sections": [
+                    { "name": "Church - Chef Chest" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Archives",
+                        "x": 472,
+                        "y": 578
+                    }
+                ]
+            },
+            {
+				"name": "Archives Frogue Chamber",
+				"sections": [
+                    { "name": "Archives Frogue Chamber - Odd Key" },
+                    { "name": "Archives Frogue Chamber - Froguelass Drop" },
+                    { "name": "#17 Froguelass Card" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Archives",
+                        "x": 869,
+                        "y": 1172
+                    }
+                ]
+            },
+            {
+				"name": "#10 Greater Guaglione Card",
+				"sections": [
+                    { "name": "#10 Greater Guaglione Card" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Archives",
+                        "x": 594,
+                        "y": 1303
+                    }
+                ]
+            },
+            {
+				"name": "Archives - Wise Dummy",
+				"sections": [
+                    { "name": "Archives - Wise Dummy Skill" },
+                    { "name": "Archives - Wise Dummy Drop" },
+                    { "name": "#44 The Wise Dummy Card" }
+                ],
+				"map_locations": [
+                    {
+                        "map": "Archives",
+                        "x": 388,
+                        "y": 444
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Beach",
+        "children": [
+            
+        ]
+    },
+    {
+        "name": "Toriel",
+        "children": [
+            
+        ]
+    },
+    {
+        "name": "Warehouse",
+        "children": [
+            
+        ]
+    }
+]

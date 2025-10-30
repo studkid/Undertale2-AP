@@ -25,9 +25,9 @@ def get_items_by_category(category: str) -> Dict[str, UT2ItemData]:
 
 item_table: Dict[str, UT2ItemData] = {
     # Party Members
-    # "Frisk":                    UT2ItemData("party", 1, ItemClassification.progression),
+    "Frisk":                                UT2ItemData("party", 1, ItemClassification.progression),
     "Fabio":                                UT2ItemData("party", 2, ItemClassification.progression),
-    "Progressive Monk Key":                 UT2ItemData("key", 3, ItemClassification.progression, 2),
+    "Progressive Monk Key":                 UT2ItemData("party", 3, ItemClassification.progression, 2),
     "sans":                                 UT2ItemData("party", 4, ItemClassification.progression),
     "Nazrin":                               UT2ItemData("party", 5, ItemClassification.progression),
     "Eclaire":                              UT2ItemData("party", 6, ItemClassification.progression),
@@ -57,9 +57,10 @@ item_table: Dict[str, UT2ItemData] = {
     "Aluminum Hat":                         UT2ItemData("head", 121, ItemClassification.useful),
     "Aluminum Badge":                       UT2ItemData("trinket", 122, ItemClassification.useful),
     "Ra Men Abs":                           UT2ItemData("body", 123, ItemClassification.useful),
-    "Lullaby Bells":                        UT2ItemData("trinket", 124, ItemClassification.progression),
-    "Lullaby Helmet":                       UT2ItemData("trinket", 125, ItemClassification.progression),
-    "Mimic's Solong":                       UT2ItemData("trinket", 126, ItemClassification.useful),
+    "Lullaby Bells":                        UT2ItemData("pgtrinket", 124, ItemClassification.progression),
+    "Lullaby Helmet":                       UT2ItemData("pgtrinket", 125, ItemClassification.progression),
+    "Mimic's Solong":                       UT2ItemData("pgrinket", 126, ItemClassification.useful),
+    "Pea Helmet":                           UT2ItemData("head", 127, ItemClassification.useful),
 
     # Weapons
     "Lucky Crowbar":                        UT2ItemData("weapon", 201, ItemClassification.progression),
@@ -79,7 +80,7 @@ item_table: Dict[str, UT2ItemData] = {
     "Splacer":                              UT2ItemData("weapon", 215, ItemClassification.useful),
     "Rusty Shard":                          UT2ItemData("weapon", 216, ItemClassification.useful),
     "Replica Gun":                          UT2ItemData("weapon", 217, ItemClassification.useful),
-    "Lullaby Sword":                        UT2ItemData("weapon", 218, ItemClassification.progression),
+    "Lullaby Sword":                        UT2ItemData("pgweapon", 218, ItemClassification.progression),
 
     # Key Items
     "Gold Key":                             UT2ItemData("key", 301, ItemClassification.progression),
@@ -95,7 +96,7 @@ item_table: Dict[str, UT2ItemData] = {
     "Relax Pass":                           UT2ItemData("misc prog", 311, ItemClassification.progression, 8),
     "Membership Card":                      UT2ItemData("misc prog", 312, ItemClassification.progression),
     "Fisherman's haste":                    UT2ItemData("misc prog", 313, ItemClassification.useful),
-    "Aquarium key":                         UT2ItemData("misc prog", 314, ItemClassification.progression),
+    "Aquarium Key":                         UT2ItemData("misc prog", 314, ItemClassification.progression),
     "Progressive Fishing Spot":             UT2ItemData("misc prog", 315, ItemClassification.progression, 6),
     "Rust Ticket":                          UT2ItemData("misc prog", 316, ItemClassification.progression),
     "Waste Ticket":                         UT2ItemData("misc prog", 317, ItemClassification.progression),
@@ -128,6 +129,43 @@ item_table: Dict[str, UT2ItemData] = {
     "Nim":                                  UT2ItemData("pgcompletion", 345, ItemClassification.progression_deprioritized_skip_balancing),
     "Bergo's Shopping List":                UT2ItemData("pgcompletion", 346, ItemClassification.progression_deprioritized_skip_balancing),
     "[Human]":                              UT2ItemData("pgcompletion", 347, ItemClassification.progression_deprioritized_skip_balancing),
+
+    "Honeycomb Beach Access":               UT2ItemData("misc prog", 348, ItemClassification.progression),
+
+    # Skills
+    "Rezz":                                 UT2ItemData("skill", 400, ItemClassification.useful),
+
+    "Breathing Exercise":                   UT2ItemData("lvskill", 401, ItemClassification.useful),
+    "Finger Guns":                          UT2ItemData("lvskill", 402, ItemClassification.useful),
+    "Helping Hand":                         UT2ItemData("lvskill", 403, ItemClassification.progression),
+    "Stepstool":                            UT2ItemData("lvskill", 404, ItemClassification.useful),
+    "Determination":                        UT2ItemData("lvskill", 405, ItemClassification.useful),
+    "Frisk (Skill)":                        UT2ItemData("lvskill", 406, ItemClassification.useful),
+    "Jump":                                 UT2ItemData("lvskill", 407, ItemClassification.useful),
+
+    "Borrow Stuffing":                      UT2ItemData("lvskill", 408, ItemClassification.useful),
+    "Cooperation":                          UT2ItemData("lvskill", 409, ItemClassification.progression),
+    "Meatshield":                           UT2ItemData("lvskill", 410, ItemClassification.useful),
+    "Attrahander":                          UT2ItemData("lvskill", 411, ItemClassification.useful),
+    "Dummyspin":                            UT2ItemData("lvskill", 412, ItemClassification.useful),
+    "Auto-Piledriver":                      UT2ItemData("lvskill", 413, ItemClassification.useful),
+
+    "Scrambled Egg":                        UT2ItemData("lvskill", 414, ItemClassification.useful),
+    "You're Blue Now":                      UT2ItemData("lvskill", 415, ItemClassification.useful),
+    "Backpat":                              UT2ItemData("lvskill", 416, ItemClassification.progression),
+    "Ghastly Blast":                        UT2ItemData("lvskill", 417, ItemClassification.useful),
+    "Sidestep":                             UT2ItemData("lvskill", 418, ItemClassification.useful),
+    "Papyrus' Odd Dance":                   UT2ItemData("lvskill", 419, ItemClassification.useful),
+
+    "Patchwork":                            UT2ItemData("lvskill", 420, ItemClassification.useful),
+    "Mouse in your Pocket":                 UT2ItemData("lvskill", 421, ItemClassification.progression),
+    "Mass Grave":                           UT2ItemData("lvskill", 422, ItemClassification.useful),
+    "Speedcraft":                           UT2ItemData("lvskill", 423, ItemClassification.useful),
+    "Sneedle":                              UT2ItemData("lvskill", 424, ItemClassification.useful),
+
+    "Raidho":                               UT2ItemData("lvskill", 425, ItemClassification.useful),
+    "Wunjo":                                UT2ItemData("lvskill", 426, ItemClassification.useful),
+    "Berkano":                              UT2ItemData("lvskill", 427, ItemClassification.useful),
 
     # Junk
     "EXP breeze badge!!!":                  UT2ItemData("filler", 1001, ItemClassification.filler),
@@ -183,6 +221,7 @@ item_table: Dict[str, UT2ItemData] = {
     "Marisa Kirisame Goal":                 UT2ItemData("filler", 90004, ItemClassification.filler, 0),
     "True Ending Goal":                     UT2ItemData("filler", 90005, ItemClassification.filler, 0),
     "All Completion Bonus Goal":            UT2ItemData("filler", 90006, ItemClassification.filler, 0),
+    "Levelsanity":                          UT2ItemData("filler", 90007, ItemClassification.filler, 0),
 }
 
 event_item_table: Dict[str, UT2ItemData] = {

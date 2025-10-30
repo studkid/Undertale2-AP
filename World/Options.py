@@ -1,4 +1,4 @@
-from Options import Choice, Range, Toggle, DeathLink, DefaultOnToggle, OptionSet, PerGameCommonOptions
+from Options import Choice, Toggle, DefaultOnToggle, PerGameCommonOptions
 
 from dataclasses import dataclass
 
@@ -15,18 +15,43 @@ class EndingGoal(Choice):
     option_marisa_kirisame = 1
     option_true_ending = 2
     option_all_completion_bonus = 3
+    default = 1
+
+class StartingCharacter(Choice):
+    """
+    Selects your starting party member.
+    May cause issues with some events, use with caution.
+    """
+    display_name = "Starting Character"
+    option_frisk = 0
+    option_fabio = 1
+    option_sans = 2
+    option_nazrin = 3
+    option_eclaire = 4
     default = 0
 
-class ProgMonkKey(Choice):
+class ProgLokeyKey(Choice):
     """
-    Makes the gold, silver, bronze and monk key progressive.
-    If Monk Key Only, the gold, silver and bronze keys will be vanilla.
+    Makes the gold, silver, bronze progressive.
+    Note: shuffling these could cause you to get stuck early for a very long time.
     """
-    display_name = "Progressive Monk Key"
+    display_name = "Progressive Lokey Key"
     option_false = 0
     option_true = 1
-    option_monk_key_only = 2
+    option_vanilla = 2
     default = 2
+
+class EarlyBeach(Choice):
+    """
+    Determines if the warp to Honeycomb Beach should be unlocked early.  This leads to a far less restrictive start.
+    Jinx and Punchbuggy will not be able to be fought until after the prison sequence.
+    If set to Item, the warp will instead be shuffled behind an item.
+    """
+    display_name = "Early Beach Access"
+    option_false = 0
+    option_true = 1
+    option_item = 2
+    default = 0
 
 class RelaxRankNeedsPass(DefaultOnToggle):
     """
@@ -35,7 +60,7 @@ class RelaxRankNeedsPass(DefaultOnToggle):
     """
     display_name = "Relax Rank needs Passes"
 
-class ShuffleFishingMissions(Toggle):
+class ShuffleFishingMissions(DefaultOnToggle):
     """
     Turns fishing missions into locations.  Progressive Fishing Spot is required
     to access new areas.
@@ -53,12 +78,13 @@ class CardSanity(Choice):
     option_bosses_only = 1
     option_all = 2
 
-class RequireNazrin(DefaultOnToggle):
+class RequireNegotiation(DefaultOnToggle):
     """
-    Require Nazrin and Mousey Help to obtain non guarenteed enemy cards
+    Require ability to use negotiation to obtain non guarenteed enemy cards
+    Requires Frisk, Nazrin and Mouse in your Pocket
     Does nothing if cardsanity is not set to all
     """
-    display_name = "Require Nazrin"
+    display_name = "Require Negotiation"
 
 class AquariumSanity(Toggle):
     """
@@ -66,12 +92,22 @@ class AquariumSanity(Toggle):
     """
     display_name = "Aquariumsanity"
 
+class LevelSanity(Toggle):
+    """
+    Adds level ups per party member as a location.
+    Additionally shuffles level up moves into the pool.
+    """
+    display_name = "Levelsanity"
+
 @dataclass
 class UT2Options(PerGameCommonOptions):
     ending_goal: EndingGoal
-    progressive_monkkey: ProgMonkKey
+    starting_character: StartingCharacter
+    progressive_lokey_key: ProgLokeyKey
+    early_beach: EarlyBeach
     shuffle_relax: RelaxRankNeedsPass
     shuffle_fish_mission: ShuffleFishingMissions
     cardsanity: CardSanity
-    require_nazrin: RequireNazrin
+    require_negotiation: RequireNegotiation
     aqariumsanity: AquariumSanity
+    levelsanity: LevelSanity

@@ -24,7 +24,7 @@ fish_data: Dict[str, List[str]] = {
     "Pagliacci":            ["Chemical Waste Zone"],
     "Blinky":               ["Chemical Waste Zone"],
     "Undyne JR":            ["Big Bone Bay"],
-    "Whale Sharke Onesie":  ["Big Bone Bay"],
+    "Whale Shark Onesie":   ["Big Bone Bay"],
     "Angeler":              ["Big Bone Bay", "Stardrop Tree"],
     "Sansfish":             ["Big Bone Bay"],
     "Angelfish":            ["Stardrop Tree"],
@@ -41,4 +41,4 @@ fish_data: Dict[str, List[str]] = {
     "Wrangler":             ["Flowey Room"]
 }
 
-fish_quests: List[str] = ["Sega Bass", "Fugu Fish", "Rotten Mackerel", "Luvdisc", "Tuna Sashimi", "Goldfish Cracker", "Essicated Angler", "Pagliacci", "Whale Shark Onesie", "Leviathan", "Tsuchinoko"]
+fish_quests: List[str] = ["Sega Bass", "Fugu Fish", "Rotten Mackerel", "Luvdisc", "Tuna Sashimi", "Goldfish Cracker", "Angler", "Pagliacci", "Whale Shark Onesie", "Leviathan", "Tsuchinoko"]

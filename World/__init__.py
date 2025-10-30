@@ -1,12 +1,13 @@
-from typing import List
+from typing import List, ClassVar
 
 from BaseClasses import Tutorial, Region, ItemClassification
 from worlds.AutoWorld import WebWorld, World
 from .Items import UT2Item, UT2ItemData, event_item_table, get_items_by_category, item_table
 from .Locations import UT2Location, location_table
-from .Options import UT2Options, ProgMonkKey, RelaxRankNeedsPass, ShuffleFishingMissions, EndingGoal
+from .Options import UT2Options, ProgLokeyKey, RelaxRankNeedsPass, ShuffleFishingMissions, EndingGoal, EarlyBeach, StartingCharacter, LevelSanity
 from .Regions import create_regions
 from .Rules import set_rules
+from .ut_map.map_page_index import map_page_index
 
 
 class UT2Web(WebWorld):
@@ -27,7 +28,7 @@ class UT2World(World):
     game = "Undertale 2"
     options_dataclass = UT2Options
     options: UT2Options
-    topology_present = True
+    topology_present = False
     required_client_version = (0, 5, 0)
     web = UT2Web()
     item_name_groups = {
@@ -39,6 +40,15 @@ class UT2World(World):
         "Weapon": {name for name, data in item_table.items() if data.category == "weapon"},
         "Code Thing": {name for name, data in item_table.items() if data.category == "pgcode"},
         "Completion Items": {name for name, data in item_table.items() if data.category == "pgcompletion"},
+        "Skills": {name for name, data in item_table.items() if data.category == "skill" or data.category == "lvskill"},
+    }
+
+    tracker_world: ClassVar = {
+        "map_page_folder": "ut_map",
+        "map_page_maps": "maps.json",
+        "map_page_locations": "locations.json",
+        "map_page_setting_key": "{player}_{team}_undertale2_area",
+        "map_page_index": map_page_index
     }
 
     item_name_to_id = {name: data.code for name, data in item_table.items() if data.code is not None}
@@ -47,6 +57,7 @@ class UT2World(World):
     def create_items(self):
         item_pool: List[UT2Item] = []
         total_locations = len(self.multiworld.get_unfilled_locations(self.player))
+        starting_char = None
 
         if self.options.shuffle_relax == RelaxRankNeedsPass.option_false:
             item_table["Relax Pass"] = UT2ItemData("misc prog", 311, ItemClassification.progression, 1)
@@ -54,6 +65,12 @@ class UT2World(World):
 
         if self.options.shuffle_fish_mission == ShuffleFishingMissions.option_false:
             self.multiworld.push_precollected(self.create_item("Fishing Mission Off"))
+
+        if self.options.levelsanity == LevelSanity.option_true:
+            self.multiworld.push_precollected(self.create_item("Levelsanity"))
+
+        if self.options.early_beach == EarlyBeach.option_item:
+            item_table["Honeycomb Beach Access"]._replace(max_quantity = 1)
 
         if self.options.ending_goal == EndingGoal.option_fake_ending:
             self.multiworld.push_precollected(self.create_item("Fake Ending Goal"))
@@ -64,19 +81,28 @@ class UT2World(World):
         elif self.options.ending_goal == EndingGoal.option_all_completion_bonus:
             self.multiworld.push_precollected(self.create_item("All Completion Bonus Goal"))
 
+        if self.options.starting_character == StartingCharacter.option_frisk:
+            self.multiworld.push_precollected(self.create_item("Frisk"))
+            starting_char = "Frisk"
+        elif self.options.starting_character == StartingCharacter.option_fabio:
+            self.multiworld.push_precollected(self.create_item("Fabio"))
+            starting_char = "Fabio"
+        elif self.options.starting_character == StartingCharacter.option_sans:
+            self.multiworld.push_precollected(self.create_item("sans"))
+            starting_char = "sans"
+        elif self.options.starting_character == StartingCharacter.option_nazrin:
+            self.multiworld.push_precollected(self.create_item("Nazrin"))
+            starting_char = "Nazrin"
+        elif self.options.starting_character == StartingCharacter.option_eclaire:
+            self.multiworld.push_precollected(self.create_item("Eclaire"))
+            starting_char = "Eclaire"
+
         for name, data in item_table.items():
             quantity = data.max_quantity
 
-            # Ignore filler, it will be added in a later stage.
-            if data.category == "Filler":
+            if data.category == "key" and self.options.progressive_lokey_key != ProgLokeyKey.option_false:
                 continue
-
-            if data.category == "key" and not name == "Progressive Monk Key" and self.options.progressive_monkkey == ProgMonkKey.option_monk_key_only:
-                continue
-
-            if data.category == "key" and self.options.progressive_monkkey == ProgMonkKey.option_true:
-                continue
-            elif data.category == "progkey" and self.options.progressive_monkkey != ProgMonkKey.option_true:
+            elif data.category == "progkey" and self.options.progressive_lokey_key != ProgLokeyKey.option_true:
                 continue
 
             if name == "Progressive Fishing Spot" and self.options.shuffle_fish_mission == ShuffleFishingMissions.option_false:
@@ -86,6 +112,15 @@ class UT2World(World):
                 continue
 
             if (name == "Flynn" or name == "Otta" or name == "Nico" or name == "Nim") and self.options.ending_goal != EndingGoal.option_all_completion_bonus:
+                continue
+
+            if name == starting_char:
+                continue
+
+            if name == "Honeycomb Beach Access" and self.options.early_beach != EarlyBeach.option_item:
+                continue
+
+            if data.category == "lvskill" and self.options.levelsanity != LevelSanity.option_true:
                 continue
 
             item_pool += [self.create_item(name) for _ in range(0, quantity)]
@@ -115,7 +150,7 @@ class UT2World(World):
     def create_regions(self):
         create_regions(self.multiworld, self.player, self.options)
         self._place_events()
-        if self.options.progressive_monkkey == ProgMonkKey.option_monk_key_only:
+        if self.options.progressive_lokey_key == ProgLokeyKey.option_vanilla:
             self.multiworld.get_location("Ruins - Lake Gold Key", self.player).place_locked_item(
                             self.create_item("Gold Key"))
             self.multiworld.get_location("Ruins - Lake Silver Key", self.player).place_locked_item(
@@ -123,8 +158,8 @@ class UT2World(World):
             self.multiworld.get_location("Ruins - Lake Bronze Key", self.player).place_locked_item(
                             self.create_item("Bronze Key"))
             
-        from Utils import visualize_regions
-        visualize_regions(self.multiworld.get_region("Menu", self.player), "my_world.puml")
+        # from Utils import visualize_regions
+        # visualize_regions(self.multiworld.get_region("Menu", self.player), "my_world.puml")
 
     def _place_events(self):
         self.multiworld.get_location("Lancer Encounter", self.player).place_locked_item(

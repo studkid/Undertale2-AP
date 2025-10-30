@@ -3,7 +3,7 @@ from typing import Dict, List, NamedTuple, Optional
 from BaseClasses import MultiWorld, Region
 from .Locations import UT2Location, location_table, event_location_table
 from Options import Choice
-from .Options import UT2Options, AquariumSanity, ShuffleFishingMissions, RelaxRankNeedsPass, EndingGoal, CardSanity
+from .Options import UT2Options, AquariumSanity, ShuffleFishingMissions, RelaxRankNeedsPass, EndingGoal, CardSanity, EarlyBeach, LevelSanity
 
 class UT2RegionData(NamedTuple):
     locations: Optional[List[str]]
@@ -11,8 +11,11 @@ class UT2RegionData(NamedTuple):
 
 def create_regions(multiworld: MultiWorld, player: int, options: UT2Options):
     regions: Dict[str, UT2RegionData] = {
-        "Menu":                     UT2RegionData(None, ["Landing", "Special Enemies"]),
+        "Menu":                     UT2RegionData(None, ["Landing", "Special Enemies", "Early Levelsanity"]),
         "Special Enemies":          UT2RegionData([], []),
+        "Early Levelsanity":        UT2RegionData([], ["Mid Levelsanity"]),
+        "Mid Levelsanity":          UT2RegionData([], ["Late Levelsanity"]),
+        "Late Levelsanity":         UT2RegionData([], []),
 
         "Landing":                  UT2RegionData([], ["Ruins Main", "Warehouse"]),
         "Ruins Main":               UT2RegionData([], ["Ruins Sewers", "Scopestablook", "Rest Zone"]),
@@ -74,6 +77,9 @@ def create_regions(multiworld: MultiWorld, player: int, options: UT2Options):
         "Post Game":                UT2RegionData([], []),
     }
 
+    if options.early_beach != EarlyBeach.option_false:
+        regions["Rest Zone"].exits.append("Beach Entry")
+
     for name, data in location_table.items():
         if (data.category == "enemy" or data.category == "pgenemy") and not options.cardsanity == CardSanity.option_all:
             continue
@@ -90,6 +96,8 @@ def create_regions(multiworld: MultiWorld, player: int, options: UT2Options):
         if data.region == "Heaven" and options.ending_goal == EndingGoal.option_marisa_kirisame:
             continue
         if (data.region == "Post Game" or data.category[:2] == "pm") and options.ending_goal != EndingGoal.option_all_completion_bonus:
+            continue
+        if data.region == "Levelsanity" and options.levelsanity != LevelSanity.option_true:
             continue
 
         regions[data.region].locations.append(name)
