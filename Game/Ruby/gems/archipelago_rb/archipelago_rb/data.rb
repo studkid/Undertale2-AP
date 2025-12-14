@@ -5,7 +5,7 @@ module Archipelago
 
     class Client
 
-        class Data
+        class DataManager
             attr_reader :game_data, :datapackages
 
             # The DataManager handles data about the current game state. It also imports DataPackages from your local filesystem (or writes should they not exist.)
