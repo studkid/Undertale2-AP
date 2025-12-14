@@ -1,6 +1,6 @@
 from typing import List
 from BaseClasses import CollectionState, MultiWorld, Location, Region, Item
-from .Options import UT2Options, CardSanity, RequireNegotiation, AquariumSanity, ShuffleFishingMissions, RelaxRankNeedsPass, EndingGoal, LevelSanity
+from .Options import UT2Options, CardSanity, RequireNegotiation, AquariumSanity, ShuffleFishingMissions, RelaxRankNeedsPass, EndingGoal, LevelSanity, EarlyBeach
 from .Locations import location_table
 from .MiscData import fish_data, fish_quests
 
@@ -37,6 +37,9 @@ def can_beat_froguelass(state: CollectionState, player: int) -> bool:
     return party_count(state, player) >= 3
 
 def can_beat_cirno(state: CollectionState, player: int) -> bool:
+    return party_count(state, player) >= 2
+
+def can_beat_miku(state: CollectionState, player: int) -> bool:
     return party_count(state, player) >= 4
 
 def can_beat_superboss(state: CollectionState, player: int, levelsanity: bool) -> bool:
@@ -329,8 +332,16 @@ def set_rules(multiworld: MultiWorld, player: int, options: UT2Options):
 
     multiworld.get_entrance("Beach Entry -> Miku Zone", player).access_rule =\
         lambda state: state.has("Vocal Key", player)
+    multiworld.get_location("#29 Hatsune Miku Card", player).access_rule =\
+        lambda state: can_beat_miku(state, player)
+    multiworld.get_location("Miku Zone - Hatsune Miku Drop", player).access_rule =\
+        lambda state: can_beat_miku(state, player)
     multiworld.get_location("Beach - The Ra Men Drop", player).access_rule =\
         lambda state: can_beat_superboss(state, player, options.levelsanity == LevelSanity.option_true)
+    
+    if options.early_beach != EarlyBeach.option_item:
+        multiworld.get_entrance("Rest Zone -> Beach Entry", player).access_rule =\
+            lambda state: state.has("Honeycomb Beach Access")
     
     # Toriel ------------------------------------------------------------------------------
     multiworld.get_entrance("Toriel House -> Toriel Roof", player).access_rule =\
