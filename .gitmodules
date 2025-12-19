@@ -1,0 +1,4 @@
+[submodule "APWorld"]
+	path = APWorld
+	url = ../Archipelago
+	branch = undertale2
