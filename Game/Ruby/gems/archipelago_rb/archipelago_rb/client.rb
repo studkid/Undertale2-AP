@@ -5,6 +5,7 @@ require_relative 'locations'
 require_relative 'data'
 require_relative 'items'
 require_relative 'players'
+require_relative 'hints'
 require 'websocket-client-simple'
 require 'json'
 
@@ -12,17 +13,18 @@ module Archipelago
 
     class Client
         attr_accessor :connect_info
-        attr_reader :data, :locations, :items, :players, :client_connect_status, :client_socket
+        attr_reader :data, :locations, :items, :players, :hints, :client_connect_status, :client_socket
 
         def initialize()
             @connect_info = {}
             @terminate = false
-            @client_version = Objects::Version.new(0, 5, 0)
+            @client_version = Objects::Version.new(0, 6, 7)
             @client_connect_status = ConnectStatus::DISCONNECTED
-            @data = DataManager.new()
-            @locations = LocationsManager.new(self)
-            @items = ItemsManager.new(self)
-            @players = PlayersManager.new(self)
+            @data = Data.new()
+            @locations = Locations.new(self)
+            @items = Items.new(self)
+            @players = Players.new(self)
+            @hints = Hints.new(self)
             @listeners = Hash.new { |hash, key| hash[key] = []}
 
             add_default_listeners()
@@ -30,9 +32,15 @@ module Archipelago
 
         def connect
             return if @client_connect_status != ConnectStatus::DISCONNECTED
+            @terminate = false
             Thread.new do
-                url = "wss://#{@connect_info["hostname"]}:#{@connect_info["port"]}"
-                @client_socket = WebSocket::Client::Simple.connect(url)
+                begin
+                    url = "wss://#{@connect_info["hostname"]}:#{@connect_info["port"]}"
+                    @client_socket = WebSocket::Client::Simple.connect(url)
+                rescue
+                    url = "ws://#{@connect_info["hostname"]}:#{@connect_info["port"]}"
+                    @client_socket = WebSocket::Client::Simple.connect(url)
+                end
             
                 @client_socket.on :open do
                 end
@@ -52,12 +60,10 @@ module Archipelago
             
                 loop do
                     sleep 1
-                    if @terminate
-                        @terminate = false
-                        break
-                    end
+                    break if @terminate
                 end
             end
+            
         end
 
         def disconnect
@@ -112,9 +118,11 @@ module Archipelago
                 @data.import_game_data(msg)
 
                 password = nil
-                if @data.game_data["password"]
+                if @data.game_data["password"] and @connect_info["password"].empty?
                     puts "Password:"
                     password = STDIN.gets.strip
+                elsif @data.game_data["password"]
+                    password = @connect_info["password"]
                 end
 
                 connect_packet = Packets::Connect.new(
@@ -124,7 +132,7 @@ module Archipelago
                     "99999", 
                     @client_version.to_hash, 
                     @connect_info["items_handling"], 
-                    ["AP"], false
+                    ["AP"] + @connect_info["tags"], true
                 )
 
                 @client_socket.send(connect_packet.to_json)
@@ -163,7 +171,22 @@ module Archipelago
             end
 
             add_listener("PrintJSON") do |msg|
-                puts msg
+                message = ""
+                msg["data"].each do |data|
+                    case data["type"]
+                    when "player_id"
+                        message << @data.slot_info[data["text"]]["name"]
+                    when "item_id"
+                        id = data["player"].to_s
+                        message << @items.name(@data.slot_info[id]["game"], data["text"].to_i)
+                    when "location_id"
+                        id = data["player"].to_s
+                        message << @locations.name(@data.slot_info[id]["game"], data["text"].to_i)
+                    else
+                        message << data["text"]
+                    end
+                end
+                puts message
             end
 
             add_listener("DataPackage") do |msg|
