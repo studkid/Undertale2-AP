@@ -1,1 +1,1 @@
-Game.exe debug
+mkxp-z.exe debug
